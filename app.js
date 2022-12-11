@@ -9,6 +9,7 @@ const router = require('./routes/index');
 const userSign = require('./routes/userSign');
 const errorHandler = require('./middlewares/errorHandler');
 const cors = require('./middlewares/cors');
+const { dataBaseUrl } = require('./utils/constants');
 
 const { PORT, NODE_ENV, DATABASE_URL } = process.env;
 
@@ -20,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors);
 
 mongoose.connect(
-  (DATABASE_URL),
+  (NODE_ENV === 'production' ? DATABASE_URL : dataBaseUrl),
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
