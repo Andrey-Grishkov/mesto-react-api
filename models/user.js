@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const { isEmail, isURL } = require('validator');
 const UnauthorizedError = require('../errors/UnauthorizedError');
 
-const userSchema = new mongoose.Schema({
+const userSchemaMesto = new mongoose.Schema({
   name: {
     type: String,
     default: 'Жак-Ив Кусто',
@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.statics.findUserByCredentials = function (email, password) {
+userSchemaMesto.statics.findUserByCredentials = function (email, password) {
   return this.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
@@ -60,4 +60,4 @@ userSchema.statics.findUserByCredentials = function (email, password) {
     });
 };
 
-module.exports = mongoose.model('user-mesto', userSchema);
+module.exports = mongoose.model('user-mesto', userSchemaMesto);
