@@ -16,7 +16,7 @@ const { PORT, NODE_ENV, DATABASE_URL } = process.env;
 const app = express();
 
 mongoose.connect(
-  (NODE_ENV === 'production' ? DATABASE_URL : dataBaseUrl),
+  process.env.DATABASE_URL,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
