@@ -55,13 +55,18 @@ const createUser = (req, res, next) => {
       email: req.body.email,
       password: hash,
     })))
-    .then((user) => res.send({
-      _id: user._id,
-      name: user.name,
-      about: user.about,
-      avatar: user.avatar,
-      email: user.email,
-    })).catch((err) => {
+    .then((user) => {
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
+        res.cookie('jwt', token).send(
+          {
+            _id: user._id,
+            name: user.name,
+            about: user.about,
+            avatar: user.avatar,
+            email: user.email,
+          })
+      }
+    ).catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Некорректные данные'));
         return;

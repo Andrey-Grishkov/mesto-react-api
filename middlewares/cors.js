@@ -7,7 +7,7 @@ const allowedCors = [
   'http://mesto.front.grishkov.nomoredomains.icu',
   'https://mesto.front.grishkov.nomoredomains.icu',
   'https://mesto-react-frontend.vercel.app',
-  'http://mesto-react-frontend.vercel.app'
+  'http://mesto-react-frontend.vercel.app',
 ];
 
 const cors = (req, res, next) => {
