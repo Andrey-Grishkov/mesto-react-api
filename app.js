@@ -11,12 +11,12 @@ const errorHandler = require('./middlewares/errorHandler');
 const cors = require('./middlewares/cors');
 const { dataBaseUrl } = require('./utils/constants');
 
-const { PORT, NODE_ENV, MONGODB_URI } = process.env;
+const { PORT, NODE_ENV, DATABASE_URL } = process.env;
 
 const app = express();
 
 mongoose.connect(
-  MONGODB_URI,
+  DATABASE_URL,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
